@@ -1,0 +1,53 @@
+{
+  "name": "@gbesse/jev-icpe-followup",
+  "version": "0.1.0",
+  "description": "Turn public French ICPE inspection findings into sourced, reviewable control follow-up candidates.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.mts",
+      "import": "./src/index.mjs"
+    },
+    "./jev": {
+      "types": "./src/jev.d.mts",
+      "import": "./src/jev.mjs"
+    }
+  },
+  "bin": {
+    "jev-icpe-followup": "./bin/jev-icpe-followup.mjs"
+  },
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "typecheck": "tsc --noEmit --strict --target ES2022 --module NodeNext docs/public-api-types.mts",
+    "test": "node --test",
+    "demo": "node examples/demo.mjs",
+    "validate": "npm run check && npm run typecheck && npm test && npm run demo"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbesse/jev-icpe-followup.git"
+  },
+  "keywords": [
+    "jev",
+    "typesafe-ai",
+    "compliance",
+    "environment",
+    "france",
+    "icpe",
+    "jev"
+  ],
+  "files": [
+    "src",
+    "bin",
+    "docs",
+    "examples",
+    "scripts"
+  ]
+}
