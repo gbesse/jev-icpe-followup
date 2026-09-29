@@ -2,7 +2,7 @@
 
 **Transforme les constats publics d’inspection ICPE en candidats de suivi de contrôle sourcés et vérifiables.**
 
-[![Tests](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.1 · Documentation française
+[![Tests](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.2 · Documentation française
 
 Le dépôt rapproche un constat d’inspection, l’action demandée et un contrôle interne accompagné de ses preuves afin de détecter une couverture complète, partielle ou absente.
 
@@ -16,6 +16,65 @@ npm run demo
 ```
 
 La démonstration utilise uniquement des données et probabilités synthétiques. Elle n’effectue aucun appel réseau et ne constitue pas une mesure de qualité de Jev.
+
+## Exemple exécutable
+
+Cet exemple compare un constat d’inspection ICPE à un contrôle interne. Il utilise un fournisseur Jev simulé : aucune clé API ni connexion réseau n’est nécessaire. L’assertion intégrée fait échouer la commande si le comportement attendu change.
+
+Le code complet de [`examples/demo.mjs`](examples/demo.mjs) est directement copiable :
+
+```js
+// Objectif : démontrer la frontière de décision sans appel réseau.
+import assert from "node:assert/strict";
+import { assessControl } from "../src/index.mjs";
+import { createFakeProvider } from "../src/jev.mjs";
+const p = createFakeProvider(() => ({
+  model: "jev-1.13.0",
+  answers: {
+    coverage: {
+      type: "choice",
+      choice: "partially_covered",
+      probabilities: {
+        covered: 0.12,
+        partially_covered: 0.72,
+        control_gap: 0.12,
+        unrelated: 0.04,
+      },
+      confidence: 0.72,
+    },
+  },
+  usage: {},
+}));
+const resultat = await assessControl(
+  {
+    id: "f1",
+    facilityId: "icpe-1",
+    text: "Le registre des contrôles n'est pas complet.",
+    requestedAction: "Compléter les contrôles périodiques",
+    inspectionDate: "2026-06-04",
+    deadline: "2026-10-01",
+    reportUrl: "https://georisques.gouv.fr",
+  },
+  {
+    id: "c1",
+    facilityId: "icpe-1",
+    description: "Revue mensuelle des contrôles",
+    evidence: ["Planning signé"],
+    owner: "HSE",
+  },
+  p,
+);
+assert.equal(resultat.coverage, "partially_covered");
+console.log(JSON.stringify(resultat, null, 2));
+```
+
+Lancez-le avec :
+
+```sh
+npm run demo
+```
+
+Résultat à repérer : `coverage: partially_covered`.
 
 ## Utilisation de la bibliothèque
 
