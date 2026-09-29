@@ -1,7 +1,7 @@
 {
   "name": "@gbesse/jev-icpe-followup",
-  "version": "0.1.0",
-  "description": "Turn public French ICPE inspection findings into sourced, reviewable control follow-up candidates.",
+  "version": "0.1.1",
+  "description": "Transforme les constats publics d’inspection ICPE en candidats de suivi de contrôle sourcés et vérifiables.",
   "type": "module",
   "license": "MIT",
   "engines": {

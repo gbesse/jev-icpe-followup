@@ -1,5 +1,5 @@
-# How it decides
+# Comment la décision est prise
 
-Facility identity, inspection date, explicit deadline and control ownership remain in code. Jev maps one finding to one internal control and evidence set. It cannot close a finding or replace the inspection authority.
+L’établissement, la date d’inspection, l’échéance explicite et le responsable restent dans le code. Jev ne peut ni clore un constat ni remplacer l’autorité d’inspection.
 
-The exact questions and criteria are versioned beside the call in [src/index.mjs](../src/index.mjs). Synthetic demo probabilities are illustrative. Calibrate review thresholds on representative labels before operational use.
+La question et les critères exacts sont versionnés dans [`src/index.mjs`](../src/index.mjs). Les probabilités de la démonstration sont synthétiques. Calibrez les seuils de revue sur des cas français annotés et représentatifs avant tout usage opérationnel.

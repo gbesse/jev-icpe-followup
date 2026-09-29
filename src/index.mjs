@@ -1,4 +1,4 @@
-// Purpose: Implement the package-specific, reviewable decision boundary.
+// Objectif : implémenter la frontière de décision métier propre au dépôt.
 export const COVERAGE=["covered","partially_covered","control_gap","unrelated"];
 export function finding(input){if(!input?.id||!input?.facilityId||!input?.text||!input?.inspectionDate||!input?.reportUrl)throw new TypeError("Finding needs id, facilityId, text, inspectionDate and reportUrl");const d=new Date(input.inspectionDate);if(Number.isNaN(d.valueOf()))throw new TypeError("inspectionDate must be ISO");return{id:String(input.id),facilityId:String(input.facilityId),text:String(input.text),requestedAction:String(input.requestedAction||""),deadline:input.deadline?new Date(input.deadline).toISOString():null,inspectionDate:d.toISOString(),reportUrl:String(input.reportUrl)};}
 export function control(input){if(!input?.id||!input?.facilityId||!input?.description)throw new TypeError("Control needs id, facilityId and description");return{id:String(input.id),facilityId:String(input.facilityId),description:String(input.description),evidence:[...(input.evidence||[])].map(String),owner:String(input.owner||"")};}
