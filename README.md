@@ -2,7 +2,7 @@
 
 **Transforme les constats publics d’inspection ICPE en candidats de suivi de contrôle sourcés et vérifiables.**
 
-[![Tests](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.2 · Documentation française
+[![Tests](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.3 · Documentation française
 
 Le dépôt rapproche un constat d’inspection, l’action demandée et un contrôle interne accompagné de ses preuves afin de détecter une couverture complète, partielle ou absente.
 
@@ -71,10 +71,20 @@ console.log(JSON.stringify(resultat, null, 2));
 Lancez-le avec :
 
 ```sh
-npm run demo
+npm run demo:principal
 ```
 
 Résultat à repérer : `coverage: partially_covered`.
+
+### Cas limite à tester
+
+Un contrôle appartenant à un autre site ICPE est rejeté localement. Le code se trouve dans [`examples/cas-limite.mjs`](examples/cas-limite.mjs).
+
+```sh
+npm run demo:limite
+```
+
+Résultat à repérer : `coverage: different_facility · appels Jev: 0`. La commande `npm run demo` exécute les deux exemples.
 
 ## Utilisation de la bibliothèque
 
