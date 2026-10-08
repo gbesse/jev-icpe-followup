@@ -2,7 +2,7 @@
 
 **Transforme les constats publics d’inspection ICPE en candidats de suivi de contrôle sourcés et vérifiables.**
 
-[![Tests](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.4 · Documentation française
+[![Tests](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-icpe-followup/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.5 · Documentation française
 
 Le dépôt rapproche un constat d’inspection, l’action demandée et un contrôle interne accompagné de ses preuves afin de détecter une couverture complète, partielle ou absente.
 
@@ -133,3 +133,11 @@ npm run demo
 La CI exécute ces vérifications sous Node.js 22 et 24.
 
 Projet indépendant, sans affiliation avec TypeSafe AI ni avec l’administration française. Consultez la [documentation de l’API Jev](https://docs.typesafe.ai/api) et les [limites du modèle](https://docs.typesafe.ai/model-jaggedness/jev-1.13).
+
+## October 2026 improvement · Amélioration d’octobre 2026 · Mejora de octubre de 2026
+
+An unknown coverage category or invalid probability/confidence now fails before a control recommendation is returned. Run `npm test`.
+
+Une couverture inconnue ou une probabilité/confiance invalide échoue désormais avant toute recommandation de contrôle. Lancez `npm test`.
+
+Una cobertura desconocida o una probabilidad/confianza inválida falla antes de devolver una recomendación de control. Ejecute `npm test`.
