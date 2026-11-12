@@ -1,0 +1,7 @@
+import {finding,control,COVERAGE}from './index.mjs';
+export function controlCoverageLedger(findings,controls,assessments){
+ const fail=()=>{throw new TypeError('Couverture invalide / Invalid coverage / Cobertura inválida');};
+ if(!Array.isArray(findings)||!Array.isArray(controls)||!Array.isArray(assessments)||Math.max(findings.length,controls.length,assessments.length)>10000)fail();const fs=new Map(findings.map(f=>{const x=finding(f);return[x.id,x];})),cs=new Map(controls.map(c=>{const x=control(c);return[x.id,x];}));if(fs.size!==findings.length||cs.size!==controls.length)fail();const pairs=new Map();
+ for(const a of assessments){const f=fs.get(a.findingId),c=cs.get(a.controlId),key=JSON.stringify([a.findingId,a.controlId]);if(!f||!c||f.facilityId!==c.facilityId||!COVERAGE.includes(a.coverage)||pairs.has(key))fail();pairs.set(key,a.coverage);}
+ return {findings:[...fs.values()].map(f=>{const eligible=[...cs.values()].filter(c=>c.facilityId===f.facilityId),known=eligible.filter(c=>pairs.has(JSON.stringify([f.id,c.id]))),states=known.map(c=>pairs.get(JSON.stringify([f.id,c.id])));return {findingId:f.id,eligibleControls:eligible.length,assessedControls:known.length,unknownControls:eligible.length-known.length,hasCoveredAssessment:states.includes('covered'),coverageCounts:Object.fromEntries(COVERAGE.map(s=>[s,states.filter(x=>x===s).length]))};}),complianceCertified:false,providerCalls:0};
+}
