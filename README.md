@@ -141,3 +141,12 @@ An unknown coverage category or invalid probability/confidence now fails before 
 Une couverture inconnue ou une probabilité/confiance invalide échoue désormais avant toute recommandation de contrôle. Lancez `npm test`.
 
 Una cobertura desconocida o una probabilidad/confianza inválida falla antes de devolver una recomendación de control. Ejecute `npm test`.
+
+
+## 2026-11-12 — FR / EN / ES
+
+FR : Conserver les contrôles non évalués à côté des lacunes confirmées sans certifier la conformité.
+
+EN: Keep unassessed controls distinct from assessed gaps without certifying compliance.
+
+ES: Conservar controles no evaluados separados de carencias evaluadas sin certificar cumplimiento.
